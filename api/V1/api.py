@@ -2,7 +2,8 @@ from api.V1.controller import (
     criarController, 
     listagemCrontoller, 
     listagemIdController,
-    atualizarController
+    atualizarController,
+    apagarController
 )
 
 from fastapi import APIRouter
@@ -21,3 +22,6 @@ api_router.include_router(listagemIdController.router,  prefix='/pais', tags=["p
 
 # PUT
 api_router.include_router(atualizarController.router, prefix='/pais-update', tags=["paises"])
+
+# DELETE
+api_router.include_router(apagarController.router, prefix='/pais-delete', tags=["paises"])
