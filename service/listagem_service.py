@@ -1,9 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import HTTPException, Depends
 from models.criar import CriaMODEL
 from core.deps import get_session
-from fastapi import HTTPException, Depends
-from typing import List
 from sqlmodel import select
+from typing import List
 
 
 async def listagem_service(db: AsyncSession = Depends(get_session)):

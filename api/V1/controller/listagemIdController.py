@@ -1,7 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import APIRouter, status, Depends
-from service import listagem_service
+from service import listagem_id_service
 from models.criar import CriaMODEL
+from uuid import UUID
 from core.deps import get_session
 from typing import List
 
@@ -15,6 +16,6 @@ Select.inherit_cache = True
 
 router = APIRouter()
 
-@router.get('', response_model=List[CriaMODEL], status_code=status.HTTP_200_OK)
-async def get_paises(db: AsyncSession = Depends(get_session)):
-    return await listagem_service(db)
+@router.get('/{id}',response_model=CriaMODEL, status_code=status.HTTP_200_OK)
+async def get_id_pais(id: UUID, db:AsyncSession=Depends(get_session)):
+    return await listagem_id_service(id, db)
